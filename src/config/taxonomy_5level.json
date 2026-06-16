@@ -1,0 +1,103 @@
+{
+  "version": "2.0",
+  "description": "5-level taxonomy for RFQ procurement with validation layer",
+  "default_canonical": null,
+  "patterns": [
+    {"regex": "toner|tonner|cartouche", "canonical": "Toner / Cartouche", "l1": "Informatique", "l2": "Impression", "l3": "Consommables Impression", "l4": "Toner", "l5": "Standard"},
+    {"regex": "imprimante|photocopieuse|photocopieur", "canonical": "Imprimante", "l1": "Informatique", "l2": "Impression", "l3": "Matériel Impression", "l4": "Imprimante", "l5": "Standard"},
+    {"regex": "ordinateur portable|pc portable|laptop", "canonical": "Ordinateur Portable", "l1": "Informatique", "l2": "Ordinateurs", "l3": "Portables", "l4": "Portable", "l5": "Standard"},
+    {"regex": "ordinateur de bureau|pc de bureau|pc fixe|desktop|micro-?ordinateur", "canonical": "Ordinateur de Bureau", "l1": "Informatique", "l2": "Ordinateurs", "l3": "Fixes", "l4": "Bureau", "l5": "Standard"},
+    {"regex": "cle usb|clé usb|disque dur|disque externe|ssd|stockage", "canonical": "Stockage Amovible", "l1": "Informatique", "l2": "Stockage", "l3": "Amovible", "l4": "Clé USB", "l5": "256GB"},
+    {"regex": "cable|câble|rallonge|adaptateur", "canonical": "Câble", "l1": "Informatique", "l2": "Réseau", "l3": "Connexion", "l4": "Câble", "l5": "Standard"},
+    {"regex": "commutateur|switch|routeur|point d acces|point d accès|borne wifi", "canonical": "Équipement Réseau", "l1": "Informatique", "l2": "Réseau", "l3": "Actif", "l4": "Switch", "l5": "24Ports"},
+    {"regex": "hebergement|hébergement|serveur|hosting|serveur.*web", "canonical": "Hébergement / Serveur", "l1": "Informatique", "l2": "Infrastructure", "l3": "Serveur", "l4": "Cloud", "l5": "Standard"},
+    {"regex": "ecran|écran|moniteur", "canonical": "Écran", "l1": "Informatique", "l2": "Périphériques", "l3": "Affichage", "l4": "Moniteur", "l5": "24pouces"},
+    {"regex": "clavier|souris|scanner", "canonical": "Périphérique", "l1": "Informatique", "l2": "Périphériques", "l3": "Input", "l4": "Clavier", "l5": "Standard"},
+    {"regex": "dejeuner|dejeneur|repas.*midi|déjeuner", "canonical": "Déjeuner", "l1": "Restauration", "l2": "Repas", "l3": "Déjeuner", "l4": "Standard", "l5": "Standard"},
+    {"regex": "diner|dîner|repas.*soir", "canonical": "Dîner", "l1": "Restauration", "l2": "Repas", "l3": "Dîner", "l4": "Standard", "l5": "Standard"},
+    {"regex": "pause.cafe|pause.café", "canonical": "Pause-café", "l1": "Restauration", "l2": "Pause-café", "l3": "Pause-café", "l4": "Standard", "l5": "Standard"},
+    {"regex": "buffet|cocktail|reception|réception", "canonical": "Buffet / Réception", "l1": "Restauration", "l2": "Événementiel", "l3": "Buffet", "l4": "Cocktail", "l5": "Standard"},
+    {"regex": "fruit|legume|légume|alimentation|denree|denrée|alimentaire|pain|viande|poisson|produit.*frais|legumes|fruits", "canonical": "Alimentation", "l1": "Restauration", "l2": "Alimentation", "l3": "Frais", "l4": "Légumes", "l5": "Standard"},
+    {"regex": "stylo|stylo.*bille|crayon|marqueur|surligneur", "canonical": "Stylo / Marqueur", "l1": "Fournitures de Bureau", "l2": "Papeterie", "l3": "Écriture", "l4": "Stylo", "l5": "Standard"},
+    {"regex": "enveloppe|enveloppes", "canonical": "Enveloppe", "l1": "Fournitures de Bureau", "l2": "Papeterie", "l3": "Enveloppes", "l4": "Enveloppe", "l5": "Standard"},
+    {"regex": "registre|cahier|registre.*securite|registre.*sécurité", "canonical": "Registre / Cahier", "l1": "Fournitures de Bureau", "l2": "Papeterie", "l3": "Documentation", "l4": "Registre", "l5": "Standard"},
+    {"regex": "chemise.*rabat|chemise.*dossier|dossier.*suspendu|chemise.*carton", "canonical": "Chemise à Rabat", "l1": "Fournitures de Bureau", "l2": "Classement", "l3": "Chemise", "l4": "À Rabat", "l5": "Standard"},
+    {"regex": "boite.*archive|boîte.*archive|boite.*archivage|classeur|archivage", "canonical": "Archive / Classeur", "l1": "Fournitures de Bureau", "l2": "Classement", "l3": "Archivage", "l4": "Boîte", "l5": "Standard"},
+    {"regex": "agrafeuse|agrafe|agrafes|perforatrice|destructeur.*document|massicot", "canonical": "Agrafeuse / Perforatrice", "l1": "Fournitures de Bureau", "l2": "Papeterie", "l3": "Agrafage", "l4": "Agrafeuse", "l5": "Standard"},
+    {"regex": "papier|ramette|papier.*bureau|papier.*imprimante|papier.*copieur", "canonical": "Papier", "l1": "Fournitures de Bureau", "l2": "Papeterie", "l3": "Papier", "l4": "Standard", "l5": "Standard"},
+    {"regex": "fauteuil|chaise|siège|siege|bureau.*directeur|bureau.*ergo", "canonical": "Mobilier de Bureau", "l1": "Fournitures de Bureau", "l2": "Mobilier", "l3": "Siège", "l4": "Fauteuil", "l5": "Standard"},
+    {"regex": "fourniture de bureau|fournitures de bureau|article.*bureau", "canonical": "Fournitures de Bureau", "l1": "Fournitures de Bureau", "l2": "Divers", "l3": "Bureau", "l4": "Standard", "l5": "Standard"},
+    {"regex": "fourniture(?!s? de bureau)", "canonical": "Fournitures Divers", "l1": "Fournitures de Bureau", "l2": "Divers", "l3": "Divers", "l4": "Standard", "l5": "Standard"},
+    {"regex": "ouvrage|livre|manuel|encyclopedie|encyclopédie", "canonical": "Ouvrage / Livre", "l1": "Culture", "l2": "Ouvrages", "l3": "Livres", "l4": "Manuels", "l5": "Standard"},
+    {"regex": "bande.*dessin|bd|manga|bédé|bede", "canonical": "Bande Dessinée", "l1": "Culture", "l2": "BD", "l3": "BD", "l4": "BD", "l5": "Standard"},
+    {"regex": "peinture|peinture.*mur|peinture.*bois|peinture.*sol|peinture.*interieur|peinture.*extérieur", "canonical": "Peinture", "l1": "Bâtiment & Travaux", "l2": "Peinture", "l3": "Peinture", "l4": "Intérieur", "l5": "Standard"},
+    {"regex": "eau.*javel|javel|détergent|détergent|lessive|nettoyant|produit.*entretien|produit.*menager|produit.*ménager", "canonical": "Produits d'Entretien", "l1": "Bâtiment & Entretien", "l2": "Nettoyage", "l3": "Nettoyage", "l4": "Détergent", "l5": "Standard"},
+    {"regex": "poubelle|sac.*poubelle|sac.*ordure|sac.*menage|sac.*ménage|baleineau", "canonical": "Hygiène / Poubelle", "l1": "Bâtiment & Entretien", "l2": "Nettoyage", "l3": "Hygiène", "l4": "Poubelle", "l5": "Standard"},
+    {"regex": "étude|etude|étude technique|étude technique|mission.*assistance|consultance", "canonical": "Étude / Conseil", "l1": "Services", "l2": "Études", "l3": "Études", "l4": "Technique", "l5": "Standard"},
+    {"regex": "suivi.*travaux|suivi.*chantier|maitrise.*oeuvre|maîtrise.*œuvre|controle.*technique", "canonical": "Suivi de Travaux", "l1": "Bâtiment & Travaux", "l2": "Travaux", "l3": "Suivi", "l4": "Technique", "l5": "Standard"},
+    {"regex": "sonorisation|éclairage|eclairage|sono|lumière|lumiere|regie|régie", "canonical": "Sonorisation / Éclairage", "l1": "Services", "l2": "Événementiel", "l3": "Sonorisation", "l4": "Éclairage", "l5": "Standard"},
+    {"regex": "voiture|véhicule|vehicule|voiture.*service|voiture.*fonction", "canonical": "Véhicule", "l1": "Services", "l2": "Transport", "l3": "Véhicule", "l4": "Voiture", "l5": "Standard"},
+    {"regex": "transport.*enfant|transport.*scolaire|transport.*personne|transport.*malade|navette", "canonical": "Transport de Personnes", "l1": "Services", "l2": "Transport", "l3": "Transport", "l4": "Navette", "l5": "Standard"},
+    {"regex": "store.*enrouleur|store.*bureau|store.*fenetre|store.*fenêtre|volet|rideau", "canonical": "Stores / Fenêtres", "l1": "Bâtiment & Entretien", "l2": "Menuiserie", "l3": "Stores", "l4": "Fenêtres", "l5": "Standard"},
+    {"regex": "prothese|prothèse|auditif|auditive|dentaire|matériel.*médical|materiel.*medical|dispositif.*médical", "canonical": "Matériel Médical", "l1": "Santé", "l2": "Équipement Médical", "l3": "Prothèses", "l4": "Auditives", "l5": "Standard"},
+    {"regex": "analyse.*medicale|analyse.*médicale|analyse.*biologique|examen.*laboratoire|diagnostic", "canonical": "Analyse Médicale", "l1": "Santé", "l2": "Analyses", "l3": "Biologique", "l4": "Diagnostic", "l5": "Standard"},
+    {"regex": "disque.*antibiotique|pansement|compresse|seringue|gant.*médical|gant.*examen|coton", "canonical": "Fournitures Médicales", "l1": "Santé", "l2": "Consommables Médicaux", "l3": "Pansements", "l4": "Gants", "l5": "Standard"},
+    {"regex": "espace.*vert|espaces.*verts|jardinage|jardin|plante|entretien.*espace|amenagement.*extérieur|aménagement.*extérieur", "canonical": "Espaces Verts", "l1": "Services", "l2": "Entretien", "l3": "Jardinage", "l4": "Espaces", "l5": "Standard"},
+    {"regex": "plomberie|robinet|vanne|tube.*cuivre|flexible.*eau|evier|évier|chasse.*eau", "canonical": "Plomberie", "l1": "Bâtiment & Travaux", "l2": "Plomberie", "l3": "Plomberie", "l4": "Robinet", "l5": "Standard"},
+    {"regex": "outillage|outil|perceuse|visseuse|scie|marteau|tournevis|pince|clé.*mécanique", "canonical": "Outillage", "l1": "Bâtiment & Travaux", "l2": "Outillage", "l3": "Électrique", "l4": "Perceuse", "l5": "Standard"},
+    {"regex": "electrique|électrique|disjoncteur|prise.*courant|interrupteur|tableau.*electrique|tableau.*électrique|fil.*electrique|fil.*électrique", "canonical": "Fournitures Électriques", "l1": "Bâtiment & Travaux", "l2": "Électricité", "l3": "Distribution", "l4": "Tableau", "l5": "Standard"},
+    {"regex": "équipement.*protection|equipement.*protection|epi|casque.*sécurité|gant.*protection|chaussure.*sécurité|masque.*protection", "canonical": "Équipement de Protection", "l1": "Services", "l2": "Sécurité", "l3": "Équipement", "l4": "Protection", "l5": "Standard"},
+    {"regex": "signalisation|panneau.*signalisation|plot|cone|cône|balisage", "canonical": "Signalisation", "l1": "Services", "l2": "Sécurité", "l3": "Signalisation", "l4": "Route", "l5": "Standard"},
+    {"regex": "formation|stage|atelier.*formation|session.*formation|cours", "canonical": "Formation", "l1": "Services", "l2": "Formation", "l3": "Formation", "l4": "Stage", "l5": "Standard"},
+    {"regex": "assurance|police.*assurance|garantie", "canonical": "Assurance", "l1": "Services", "l2": "Assurance", "l3": "Garantie", "l4": "Garantie", "l5": "Standard"},
+    {"regex": "nettoyage|entretien.*local|entretien.*bureau|menage|ménage|entretien.*menager|entretien.*ménager", "canonical": "Entretien / Nettoyage", "l1": "Bâtiment & Entretien", "l2": "Nettoyage", "l3": "Nettoyage", "l4": "Local", "l5": "Standard"},
+    {"regex": "maintenance|entretien.*technique|sav|service.*après.*vente|service.*apres.*vente|contrat.*maintenance", "canonical": "Maintenance", "l1": "Services", "l2": "Maintenance", "l3": "Préventive", "l4": "Technique", "l5": "Standard"},
+    {"regex": "prestation.*service|prestation.*intellectuelle|consulting|expertise", "canonical": "Prestation de Service", "l1": "Services", "l2": "Conseil", "l3": "Prestation", "l4": "Service", "l5": "Standard"},
+    {"regex": "travaux.*construction|construction|réhabilitation|rehabilitation|rénovation|renovation|extension.*batiment|extension.*bâtiment", "canonical": "Travaux de Construction", "l1": "Bâtiment & Travaux", "l2": "Construction", "l3": "Construction", "l4": "Extension", "l5": "Standard"},
+    {"regex": "achat d'ouvrage|achat d'ouvrage", "canonical": "Ouvrage", "l1": "Services", "l2": "Ouvrage", "l3": "Construction", "l4": "Ouvrage", "l5": "Standard"},
+    {"regex": "achat de toner pour imprimante|achat de toner pour imprimante", "canonical": "Toner Impression", "l1": "Informatique", "l2": "Impression", "l3": "Toner", "l4": "Achat", "l5": "Standard"},
+    {"regex": "achat de fournitures de bureau|achat de fournitures de bureau", "canonical": "Achat Fournitures Bureau", "l1": "Fournitures de Bureau", "l2": "Achat", "l3": "Bureau", "l4": "Achat", "l5": "Standard"},
+    {"regex": "achat d une voiture de service|achat d une voiture de service", "canonical": "Véhicule Service", "l1": "Services", "l2": "Transport", "l3": "Véhicule", "l4": "Service", "l5": "Standard"},
+    {"regex": "achat d une voiture de service|achat d une voiture de service", "canonical": "Voiture Service", "l1": "Services", "l2": "Transport", "l3": "Véhicule", "l4": "Voiture", "l5": "Standard"},
+    {"regex": "achat d une voiture de service|achat d une voiture de service", "canonical": "Voiture Service", "l1": "Services", "l2": "Transport", "l3": "Véhicule", "l4": "Voiture", "l5": "Standard"},
+    {"regex": "achat d une voiture de service|achat d une voiture de service", "canonical": "Voiture Service", "l1": "Services", "l2": "Transport", "l3": "Véhicule", "l4": "Voiture", "l5": "Standard"}
+  ],
+  "tree": {
+    "Informatique": {
+      "description": "Matériel informatique, périphériques, réseaux et infrastructure IT",
+      "children": ["Impression", "Ordinateurs", "Stockage", "Réseau", "Périphériques", "Infrastructure"]
+    },
+    "Fournitures de Bureau": {
+      "description": "Papeterie, classement, mobilier et fournitures diverses de bureau",
+      "children": ["Papeterie", "Classement", "Mobilier", "Divers"]
+    },
+    "Restauration": {
+      "description": "Restauration, pause-café, alimentation et événementiel",
+      "children": ["Restauration", "Pause-café", "Alimentation", "Événementiel"]
+    },
+    "Bâtiment & Travaux": {
+      "description": "Construction, rénovation, peinture, plomberie, électricité",
+      "children": ["Peinture", "Plomberie", "Électricité", "Travaux", "Menuiserie", "Construction"]
+    },
+    "Bâtiment & Entretien": {
+      "description": "Nettoyage, entretien des locaux, hygiène",
+      "children": ["Nettoyage", "Menuiserie"]
+    },
+    "Santé": {
+      "description": "Équipement médical, analyses, consommables de santé",
+      "children": ["Équipement Médical", "Analyses", "Consommables Médicaux"]
+    },
+    "Services": {
+      "description": "Transport, études, conseil, formation, sécurité, maintenance, événementiel",
+      "children": ["Transport", "Études", "Conseil", "Formation", "Sécurité", "Maintenance", "Assurance", "Entretien", "Événementiel"]
+    },
+    "Culture": {
+      "description": "Ouvrages, livres, bandes dessinées, documentation",
+      "children": ["Ouvrages", "BD"]
+    },
+    "Non classé": {
+      "description": "Panels non classifiés",
+      "children": ["Non classé"]
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "last_run": "2026-06-16T15:58:36",
+  "files_processed": {
+    "Article.csv.gz": "4d7a4f954f835c37e41f2448c92bf4ea"
+  },
+  "chunks_processed": [
+    "chunk_0000001_0100000.parquet",
+    "chunk_0100001_0200000.parquet",
+    "chunk_0200001_0300000.parquet",
+    "chunk_0300001_0400000.parquet",
+    "chunk_0400001_0500000.parquet",
+    "chunk_0500001_0600000.parquet",
+    "chunk_0600001_0700000.parquet",
+    "chunk_0700001_0800000.parquet",
+    "chunk_0800001_0900000.parquet",
+    "chunk_0900001_1000000.parquet",
+    "chunk_1000001_1100000.parquet",
+    "chunk_1100001_1200000.parquet",
+    "chunk_1200001_1300000.parquet",
+    "chunk_1300001_1400000.parquet",
+    "chunk_1400001_1500000.parquet",
+    "chunk_1500001_1600000.parquet",
+    "chunk_1600001_1700000.parquet",
+    "chunk_1700001_1800000.parquet",
+    "chunk_1800001_1891428.parquet"
+  ],
+  "total_rows": 1734540,
+  "runs": 1
+}

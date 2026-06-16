@@ -1,0 +1,96 @@
+{
+  "version": "1.0",
+  "description": "Bootstrapped taxonomy for panel canonicalization and classification",
+  "default_canonical": null,
+  "patterns": [
+    {"regex": "toner|tonner|cartouche", "canonical": "Toner / Cartouche", "l1": "Informatique", "l2": "Impression"},
+    {"regex": "imprimante|photocopieuse|photocopieur", "canonical": "Imprimante", "l1": "Informatique", "l2": "Impression"},
+    {"regex": "ordinateur portable|pc portable|laptop", "canonical": "Ordinateur Portable", "l1": "Informatique", "l2": "Ordinateurs"},
+    {"regex": "ordinateur de bureau|pc de bureau|pc fixe|desktop|micro-?ordinateur", "canonical": "Ordinateur de Bureau", "l1": "Informatique", "l2": "Ordinateurs"},
+    {"regex": "cle usb|clé usb|disque dur|disque externe|ssd|stockage", "canonical": "Stockage Amovible", "l1": "Informatique", "l2": "Stockage"},
+    {"regex": "cable|câble|rallonge|adaptateur", "canonical": "Câble", "l1": "Informatique", "l2": "Réseau"},
+    {"regex": "commutateur|switch|routeur|point d acces|point d accès|borne wifi", "canonical": "Équipement Réseau", "l1": "Informatique", "l2": "Réseau"},
+    {"regex": "hebergement|hébergement|serveur|hosting|serveur.*web", "canonical": "Hébergement / Serveur", "l1": "Informatique", "l2": "Infrastructure"},
+    {"regex": "ecran|écran|moniteur", "canonical": "Écran", "l1": "Informatique", "l2": "Périphériques"},
+    {"regex": "clavier|souris|scanner", "canonical": "Périphérique", "l1": "Informatique", "l2": "Périphériques"},
+    {"regex": "dejeuner|dejeneur|repas.*midi|déjeuner", "canonical": "Déjeuner", "l1": "Restauration", "l2": "Restauration"},
+    {"regex": "diner|dîner|repas.*soir", "canonical": "Dîner", "l1": "Restauration", "l2": "Restauration"},
+    {"regex": "pause.cafe|pause.café", "canonical": "Pause-café", "l1": "Restauration", "l2": "Pause-café"},
+    {"regex": "buffet|cocktail|reception|réception", "canonical": "Buffet / Réception", "l1": "Restauration", "l2": "Événementiel"},
+    {"regex": "fruit|legume|légume|alimentation|denree|denrée|alimentaire|pain|viande|poisson|produit.*frais|legumes|fruits", "canonical": "Alimentation", "l1": "Restauration", "l2": "Alimentation"},
+    {"regex": "stylo|stylo.*bille|crayon|marqueur|surligneur", "canonical": "Stylo / Marqueur", "l1": "Fournitures de Bureau", "l2": "Papeterie"},
+    {"regex": "enveloppe|enveloppes", "canonical": "Enveloppe", "l1": "Fournitures de Bureau", "l2": "Papeterie"},
+    {"regex": "registre|cahier|registre.*securite|registre.*sécurité", "canonical": "Registre / Cahier", "l1": "Fournitures de Bureau", "l2": "Papeterie"},
+    {"regex": "chemise.*rabat|chemise.*dossier|dossier.*suspendu|chemise.*carton", "canonical": "Chemise à Rabat", "l1": "Fournitures de Bureau", "l2": "Classement"},
+    {"regex": "boite.*archive|boîte.*archive|boite.*archivage|classeur|archivage", "canonical": "Archive / Classeur", "l1": "Fournitures de Bureau", "l2": "Classement"},
+    {"regex": "agrafeuse|agrafe|agrafes|perforatrice|destructeur.*document|massicot", "canonical": "Agrafeuse / Perforatrice", "l1": "Fournitures de Bureau", "l2": "Papeterie"},
+    {"regex": "papier|ramette|papier.*bureau|papier.*imprimante|papier.*copieur", "canonical": "Papier", "l1": "Fournitures de Bureau", "l2": "Papeterie"},
+    {"regex": "fauteuil|chaise|siège|siege|bureau.*directeur|bureau.*ergo", "canonical": "Mobilier de Bureau", "l1": "Fournitures de Bureau", "l2": "Mobilier"},
+    {"regex": "fourniture de bureau|fournitures de bureau|article.*bureau", "canonical": "Fournitures de Bureau", "l1": "Fournitures de Bureau", "l2": "Divers"},
+    {"regex": "fourniture(?!s? de bureau)", "canonical": "Fournitures Divers", "l1": "Fournitures de Bureau", "l2": "Divers"},
+    {"regex": "ouvrage|livre|manuel|encyclopedie|encyclopédie", "canonical": "Ouvrage / Livre", "l1": "Culture", "l2": "Ouvrages"},
+    {"regex": "bande.*dessin|bd|manga|bédé|bede", "canonical": "Bande Dessinée", "l1": "Culture", "l2": "BD"},
+    {"regex": "peinture|peinture.*mur|peinture.*bois|peinture.*sol|peinture.*interieur|peinture.*extérieur", "canonical": "Peinture", "l1": "Bâtiment & Travaux", "l2": "Peinture"},
+    {"regex": "eau.*javel|javel|détergent|detergent|lessive|nettoyant|produit.*entretien|produit.*menager|produit.*ménager", "canonical": "Produits d'Entretien", "l1": "Bâtiment & Entretien", "l2": "Nettoyage"},
+    {"regex": "poubelle|sac.*poubelle|sac.*ordure|sac.*menage|sac.*ménage|baleineau", "canonical": "Hygiène / Poubelle", "l1": "Bâtiment & Entretien", "l2": "Nettoyage"},
+    {"regex": "étude|etude|etude technique|étude technique|mission.*assistance|consultance", "canonical": "Étude / Conseil", "l1": "Services", "l2": "Études"},
+    {"regex": "suivi.*travaux|suivi.*chantier|maitrise.*oeuvre|maîtrise.*œuvre|controle.*technique", "canonical": "Suivi de Travaux", "l1": "Bâtiment & Travaux", "l2": "Travaux"},
+    {"regex": "sonorisation|éclairage|eclairage|sono|lumière|lumiere|regie|régie", "canonical": "Sonorisation / Éclairage", "l1": "Services", "l2": "Événementiel"},
+    {"regex": "voiture|véhicule|vehicule|voiture.*service|voiture.*fonction", "canonical": "Véhicule", "l1": "Services", "l2": "Transport"},
+    {"regex": "transport.*enfant|transport.*scolaire|transport.*personne|transport.*malade|navette", "canonical": "Transport de Personnes", "l1": "Services", "l2": "Transport"},
+    {"regex": "store.*enrouleur|store.*bureau|store.*fenetre|store.*fenêtre|volet|rideau", "canonical": "Stores / Fenêtres", "l1": "Bâtiment & Entretien", "l2": "Menuiserie"},
+    {"regex": "prothese|prothèse|auditif|auditive|dentaire|matériel.*médical|materiel.*medical|dispositif.*médical", "canonical": "Matériel Médical", "l1": "Santé", "l2": "Équipement Médical"},
+    {"regex": "analyse.*medicale|analyse.*médicale|analyse.*biologique|examen.*laboratoire|diagnostic", "canonical": "Analyse Médicale", "l1": "Santé", "l2": "Analyses"},
+    {"regex": "disque.*antibiotique|pansement|compresse|seringue|gant.*médical|gant.*examen|coton", "canonical": "Fournitures Médicales", "l1": "Santé", "l2": "Consommables Médicaux"},
+    {"regex": "espace.*vert|espaces.*verts|jardinage|jardin|plante|entretien.*espace|amenagement.*extérieur|aménagement.*extérieur", "canonical": "Espaces Verts", "l1": "Services", "l2": "Entretien"},
+    {"regex": "plomberie|robinet|vanne|tube.*cuivre|flexible.*eau|evier|évier|chasse.*eau", "canonical": "Plomberie", "l1": "Bâtiment & Travaux", "l2": "Plomberie"},
+    {"regex": "outillage|outil|perceuse|visseuse|scie|marteau|tournevis|pince|clé.*mécanique", "canonical": "Outillage", "l1": "Bâtiment & Travaux", "l2": "Outillage"},
+    {"regex": "electrique|électrique|disjoncteur|prise.*courant|interrupteur|tableau.*electrique|tableau.*électrique|fil.*electrique|fil.*électrique", "canonical": "Fournitures Électriques", "l1": "Bâtiment & Travaux", "l2": "Électricité"},
+    {"regex": "équipement.*protection|equipement.*protection|epi|casque.*sécurité|gant.*protection|chaussure.*sécurité|masque.*protection", "canonical": "Équipement de Protection", "l1": "Services", "l2": "Sécurité"},
+    {"regex": "signalisation|panneau.*signalisation|plot|cone|cône|balisage", "canonical": "Signalisation", "l1": "Services", "l2": "Sécurité"},
+    {"regex": "formation|stage|atelier.*formation|session.*formation|cours", "canonical": "Formation", "l1": "Services", "l2": "Formation"},
+    {"regex": "assurance|police.*assurance|garantie", "canonical": "Assurance", "l1": "Services", "l2": "Assurance"},
+    {"regex": "nettoyage|entretien.*local|entretien.*bureau|menage|ménage|entretien.*menager|entretien.*ménager", "canonical": "Entretien / Nettoyage", "l1": "Bâtiment & Entretien", "l2": "Nettoyage"},
+    {"regex": "maintenance|entretien.*technique|sav|service.*après.*vente|service.*apres.*vente|contrat.*maintenance", "canonical": "Maintenance", "l1": "Services", "l2": "Maintenance"},
+    {"regex": "prestation.*service|prestation.*intellectuelle|consulting|expertise", "canonical": "Prestation de Service", "l1": "Services", "l2": "Conseil"},
+    {"regex": "travaux.*construction|construction|réhabilitation|rehabilitation|rénovation|renovation|extension.*batiment|extension.*bâtiment", "canonical": "Travaux de Construction", "l1": "Bâtiment & Travaux", "l2": "Construction"}
+  ],
+  "tree": {
+    "Informatique": {
+      "description": "Matériel informatique, périphériques, réseaux et infrastructure IT",
+      "children": ["Impression", "Ordinateurs", "Stockage", "Réseau", "Périphériques", "Infrastructure"]
+    },
+    "Fournitures de Bureau": {
+      "description": "Papeterie, classement, mobilier et fournitures diverses de bureau",
+      "children": ["Papeterie", "Classement", "Mobilier", "Divers"]
+    },
+    "Restauration": {
+      "description": "Restauration, pause-café, alimentation et événementiel",
+      "children": ["Restauration", "Pause-café", "Alimentation", "Événementiel"]
+    },
+    "Bâtiment & Travaux": {
+      "description": "Construction, rénovation, peinture, plomberie, électricité",
+      "children": ["Peinture", "Plomberie", "Électricité", "Travaux", "Menuiserie", "Construction", "Outillage"]
+    },
+    "Bâtiment & Entretien": {
+      "description": "Nettoyage, entretien des locaux, hygiène",
+      "children": ["Nettoyage", "Menuiserie"]
+    },
+    "Santé": {
+      "description": "Équipement médical, analyses, consommables de santé",
+      "children": ["Équipement Médical", "Analyses", "Consommables Médicaux"]
+    },
+    "Services": {
+      "description": "Transport, études, conseil, formation, sécurité, maintenance, événementiel",
+      "children": ["Transport", "Études", "Conseil", "Formation", "Sécurité", "Maintenance", "Assurance", "Entretien", "Événementiel"]
+    },
+    "Culture": {
+      "description": "Ouvrages, livres, bandes dessinées, documentation",
+      "children": ["Ouvrages", "BD"]
+    },
+    "Non classé": {
+      "description": "Panels n'ayant pu être classifiés automatiquement",
+      "children": ["Non classé"]
+    }
+  }
+}

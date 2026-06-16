@@ -1,0 +1,9 @@
+dotenv
+requests
+pyarrow
+pandas
+numpy
+argparse
+tqdm
+pytest
+uuid
