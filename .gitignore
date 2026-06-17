@@ -9,4 +9,6 @@ wheels/
 # Virtual environments
 .venv
 
-data/raw
+data/raw    
+data/silver
+data/gold
