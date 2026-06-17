@@ -42,7 +42,8 @@ Group semantically equivalent variants under the same canonical label:
 Apply this logic to the canonical field — normalize to a clean, French procurement label.
 
 ## PANEL TO CLASSIFY
-"{panel}"
+Panel (purpose): "{panel}"
+Designation (product): "{designation}"
 
 ## OUTPUT FORMAT
 Respond with ONLY a single valid JSON object. No explanation, no markdown, no extra keys.
@@ -73,6 +74,7 @@ Assume the classifier made an error until the evidence proves otherwise.
 
 ## ALGORITHMIC CLASSIFICATION UNDER REVIEW
 Panel (raw input) : "{panel}"
+Designation (product) : "{designation}"
 Canonical label  : "{canonical}"
 L1               : "{l1}"
 L2               : "{l2}"
@@ -311,12 +313,43 @@ class TaxonomyClassifier:
         lines = []
         for l1, info in tax.get("tree", {}).items():
             children = info.get("children", [])
-            for l2 in children:
-                if isinstance(l2, dict):
-                    l2_name = l2.get("name", list(l2.keys())[0] if l2 else "?")
-                else:
-                    l2_name = l2
-                lines.append(f"  {l1} > {l2_name}")
+            if isinstance(children, list):
+                for l2 in children:
+                    if isinstance(l2, dict):
+                        l2_name = l2.get("name", list(l2.keys())[0] if l2 else "?")
+                        children_l3 = l2.get("children", [])
+                        if children_l3:
+                            for l3 in children_l3:
+                                if isinstance(l3, dict):
+                                    l3_name = l3.get("name", list(l3.keys())[0] if l3 else "?")
+                                    children_l4 = l3.get("children", [])
+                                    if children_l4:
+                                        for l4 in children_l4:
+                                            if isinstance(l4, dict):
+                                                l4_name = l4.get("name", list(l4.keys())[0] if l4 else "?")
+                                                children_l5 = l4.get("children", [])
+                                                if children_l5:
+                                                    for l5 in children_l5:
+                                                        if isinstance(l5, dict):
+                                                            l5_name = l5.get("name", list(l5.keys())[0] if l5 else "?")
+                                                            lines.append(f"  {l1} > {l2_name} > {l3_name} > {l4_name} > {l5_name}")
+                                                        else:
+                                                            lines.append(f"  {l1} > {l2_name} > {l3_name} > {l4_name} > {l5}")
+                                                else:
+                                                    lines.append(f"  {l1} > {l2_name} > {l3_name} > {l4_name}")
+                                            else:
+                                                lines.append(f"  {l1} > {l2_name} > {l3_name}")
+                                        else:
+                                            lines.append(f"  {l1} > {l2_name} > {l3_name}")
+                                    else:
+                                        lines.append(f"  {l1} > {l2_name}")
+                                else:
+                                    lines.append(f"  {l1} > {l2_name}")
+                            else:
+                                for l2_name in children:
+                                    lines.append(f"  {l1} > {l2_name}")
+            else:
+                lines.append(f"  {l1}")
         self._tree_str = "\n".join(lines)
         return self._tree_str
 
@@ -341,40 +374,53 @@ class TaxonomyClassifier:
         except requests.RequestException as e:
             return None
 
-    def classify(self, panel: str) -> dict:
-        cached = self.cache.get(panel)
+    def classify(self, panel: str, designation: str = "") -> dict:
+        cache_key = panel
+        if designation:
+            cache_key = f"{panel}||{designation}"
+        cached = self.cache.get(cache_key)
         if cached is not None:
             return cached
 
         tree = self._format_tree()
-        prompt = CLASSIFY_PROMPT.format(tree=tree, panel=panel)
+        prompt = CLASSIFY_PROMPT.format(tree=tree, panel=panel, designation=designation)
         raw = self._ollama_generate(prompt)
 
         result = self._parse_classification(raw, panel)
 
-        if result.get("confidence", 0.0) >= VALIDATION_CONFIDENCE_THRESHOLD:
-            validation_result = self._validate_classification(panel, result)
-            if validation_result["valid"]:
-                self.cache[panel] = validation_result
+        confidence = result.get("confidence", 0.0)
+        if confidence >= VALIDATION_CONFIDENCE_THRESHOLD:
+            validation_result = self._validate_classification(panel, designation, result)
+            if validation_result.get("valid", False):
+                validated = validation_result.get("corrected", result)
+                self.cache[cache_key] = validated
                 self._save_cache()
-                return validation_result
+                return validated
 
-        self.cache[panel] = result
+        self.cache[cache_key] = result
         self._save_cache()
         return result
 
-    def classify_batch(self, panels: list[str]) -> dict[str, dict]:
+    def classify_batch(self, panels: list[str], designations: list[str] = None) -> dict[str, dict]:
+        if designations is None:
+            designations = [""] * len(panels)
+        
         results = {}
         uncached = []
-        for p in panels:
-            cached = self.cache.get(p)
+        uncached_designations = []
+        for i, p in enumerate(panels):
+            d = designations[i] if i < len(designations) else ""
+            cache_key = p if not d else f"{p}||{d}"
+            cached = self.cache.get(cache_key)
             if cached is not None:
                 results[p] = cached
             else:
                 uncached.append(p)
+                uncached_designations.append(d)
 
-        for panel in uncached:
-            result = self.classify(panel)
+        for panel, designation in zip(uncached, uncached_designations):
+            result = self.classify(panel, designation)
+            cache_key = panel if not designation else f"{panel}||{designation}"
             results[panel] = result
 
         return results
@@ -391,52 +437,146 @@ class TaxonomyClassifier:
             pass
         return {"canonical": "", "l1": "Non classé", "l2": "Non classé", "l3": "Non classé", "l4": "Non classé", "l5": "Non classé", "confidence": 0.0}
 
-    def _validate_classification(self, panel: str, classification: dict) -> dict:
+    # def _validate_classification(self, panel: str, designation: str, classification: dict) -> dict:
+    #     confidence = classification.get("confidence", 0.0)
+    #     if confidence < VALIDATION_CONFIDENCE_THRESHOLD:
+    #         return classification
+
+    #     validation_prompt = VALIDATION_PROMPT.format(
+    #         panel=panel,
+    #         designation=designation,
+    #         canonical=str(classification.get("canonical", "")),
+    #         l1=str(classification.get("l1", "Non classé")),
+    #         l2=str(classification.get("l2", "Non classé")),
+    #         l3=str(classification.get("l3", "Non classé")),
+    #         l4=str(classification.get("l4", "Non classé")),
+    #         l5=str(classification.get("l5", "Non classé"))
+    #     )
+
+    #     raw = self._ollama_generate(validation_prompt, system="You are a taxonomy validation expert. Validate classifications against RFQ procurement standards.")
+    #     validation_result = self._parse_validation(raw)
+
+    #     if validation_result["valid"] and validation_result.get("corrected"):
+    #         return validation_result["corrected"]
+
+    #     return classification
+
+    def _validate_classification(self, panel: str, designation: str, classification: dict) -> dict:
+        """
+        Validate a classification using the adversarial auditor prompt.
+        Returns the corrected classification if validation fails, else the original.
+
+        Fixes applied:
+          - Bug 1: pass confidence, match_rationale, tree to VALIDATION_PROMPT.format()
+          - Bug 2: inverted condition — apply correction when valid=False (not True)
+        """
         confidence = classification.get("confidence", 0.0)
         if confidence < VALIDATION_CONFIDENCE_THRESHOLD:
             return classification
 
         validation_prompt = VALIDATION_PROMPT.format(
             panel=panel,
+            designation=designation,
             canonical=str(classification.get("canonical", "")),
             l1=str(classification.get("l1", "Non classé")),
             l2=str(classification.get("l2", "Non classé")),
             l3=str(classification.get("l3", "Non classé")),
             l4=str(classification.get("l4", "Non classé")),
-            l5=str(classification.get("l5", "Non classé"))
+            l5=str(classification.get("l5", "Non classé")),
+            confidence=str(confidence),                                       # Bug 1 fix
+            match_rationale=str(classification.get("match_rationale", "")),  # Bug 1 fix
+            tree=self._format_tree(),                                         # Bug 1 fix
         )
 
-        raw = self._ollama_generate(validation_prompt, system="You are a taxonomy validation expert. Validate classifications against RFQ procurement standards.")
+        raw = self._ollama_generate(
+            validation_prompt,
+            system="You are a taxonomy validation expert. Validate classifications against RFQ procurement standards."
+        )
         validation_result = self._parse_validation(raw)
 
-        if validation_result["valid"] and validation_result.get("corrected"):
+        # Bug 2 fix: corrected is non-null only when valid=False (per VALIDATION_PROMPT spec)
+        if not validation_result.get("valid", True) and validation_result.get("corrected"):
             return validation_result["corrected"]
 
         return classification
 
+    # def _parse_validation(self, raw: str | None) -> dict:
+    #     if raw is None:
+    #         return {"valid": False, "reason": "Validation failed", "corrected": None}
+    #     try:
+    #         parsed = json.loads(raw)
+    #         if all(k in parsed for k in ("valid", "reason")):
+    #             parsed.setdefault("corrected", None)
+    #             return parsed
+    #     except (json.JSONDecodeError, TypeError):
+    #         pass
+    #     return {"valid": False, "reason": "Validation failed", "corrected": None}
+
     def _parse_validation(self, raw: str | None) -> dict:
+        """
+        Parse the adversarial validator's JSON response.
+
+        Fix applied:
+          - Bug 3: VALIDATION_PROMPT returns 'verdict'/'audit_note', not 'reason'
+        """
         if raw is None:
-            return {"valid": False, "reason": "Validation failed", "corrected": None}
+            return {"valid": False, "verdict": "HARD_FAIL", "corrected": None}
+        # Strip markdown fences if model wraps output
+        clean = raw.strip()
+        if clean.startswith("```"):
+            clean = "\n".join(
+                line for line in clean.splitlines()
+                if not line.strip().startswith("```")
+            ).strip()
         try:
-            parsed = json.loads(raw)
-            if all(k in parsed for k in ("valid", "reason")):
+            parsed = json.loads(clean)
+            if all(k in parsed for k in ("valid", "verdict")):  # Bug 3 fix
                 parsed.setdefault("corrected", None)
+                parsed.setdefault("failed_checks", [])
+                parsed.setdefault("confidence_flag", None)
+                parsed.setdefault("audit_note", "")
                 return parsed
         except (json.JSONDecodeError, TypeError):
             pass
-        return {"valid": False, "reason": "Validation failed", "corrected": None}
+        return {"valid": False, "verdict": "HARD_FAIL", "failed_checks": [], "corrected": None}
+
+
+
+    # def bootstrap_from_panels(self, panels: list[str], batch_size: int = 50) -> list[dict]:
+    #     groups = []
+    #     for i in range(0, len(panels), batch_size):
+    #         batch = panels[i:i + batch_size]
+    #         panel_text = "\n".join(f"- {p}" for p in batch)
+    #         prompt = BOOTSTRAP_PROMPT.format(panels=panel_text)
+    #         raw = self._ollama_generate(prompt, system="You are a taxonomy expert.")
+    #         parsed = self._parse_bootstrap(raw)
+    #         groups.extend(parsed)
+    #     return groups
+
 
     def bootstrap_from_panels(self, panels: list[str], batch_size: int = 50) -> list[dict]:
+        """
+        Bootstrap taxonomy groups from a list of raw panel names.
+
+        Fix applied:
+          - Bug 4: BOOTSTRAP_PROMPT expects {panel_sample} and {timestamp}, not {panels}
+        """
+        from datetime import datetime
+
         groups = []
         for i in range(0, len(panels), batch_size):
             batch = panels[i:i + batch_size]
             panel_text = "\n".join(f"- {p}" for p in batch)
-            prompt = BOOTSTRAP_PROMPT.format(panels=panel_text)
+            prompt = BOOTSTRAP_PROMPT.format(
+                panel_sample=panel_text,                                          # Bug 4 fix
+                timestamp=datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ"),      # Bug 4 fix
+            )
             raw = self._ollama_generate(prompt, system="You are a taxonomy expert.")
             parsed = self._parse_bootstrap(raw)
             groups.extend(parsed)
         return groups
-
+    
+    
     def _parse_bootstrap(self, raw: str | None) -> list[dict]:
         if raw is None:
             return []

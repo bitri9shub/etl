@@ -1,7 +1,7 @@
 {
-  "last_run": "2026-06-16T15:58:36",
+  "last_run": "2026-06-17T14:02:22",
   "files_processed": {
-    "Article.csv.gz": "4d7a4f954f835c37e41f2448c92bf4ea"
+    "Article.csv.gz": "15d785d92433f66fab71627d3a4f73e0"
   },
   "chunks_processed": [
     "chunk_0000001_0100000.parquet",
@@ -24,6 +24,6 @@
     "chunk_1700001_1800000.parquet",
     "chunk_1800001_1891428.parquet"
   ],
-  "total_rows": 1734540,
+  "total_rows": 1791918,
   "runs": 1
 }

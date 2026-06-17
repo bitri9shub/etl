@@ -94,7 +94,10 @@ def enrich_gold(gold_df: pd.DataFrame) -> pd.DataFrame:
     console.print(f"[cyan]Classifying {len(to_classify):,} unmatched panel values...[/]")
     classifier = TaxonomyClassifier()
 
-    classifications = classifier.classify_batch(to_classify)
+    # Get designation_clean for each panel to improve classification
+    designations = df.set_index("panel_clean").loc[to_classify, "designation_clean"].fillna("").tolist()
+
+    classifications = classifier.classify_batch(to_classify, designations)
 
     # Build a lookup: panel_clean → (canonical, l1, l2, l3, l4, l5)
     lookup = {}

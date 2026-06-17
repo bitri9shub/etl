@@ -1,5 +1,5 @@
 {
-  "pause- cafe": {
+  "lampe led||150w": {
     "canonical": "",
     "l1": "Non classé",
     "l2": "Non classé",
@@ -8,7 +8,208 @@
     "l5": "Non classé",
     "confidence": 0.0
   },
-  "banderole": {
+  "banderole||50we40": {
+    "canonical": "",
+    "l1": "Non classé",
+    "l2": "Non classé",
+    "l3": "Non classé",
+    "l4": "Non classé",
+    "l5": "Non classé",
+    "confidence": 0.0
+  },
+  "eau minerale||50we27": {
+    "canonical": "Eau Minérale",
+    "l1": "Matières premières et produits alimentaires",
+    "l2": "Produits alimentaires",
+    "l3": "Boissons",
+    "l4": "Eaux minérales",
+    "l5": "",
+    "confidence": 0.95,
+    "match_rationale": "Matched to 'Eau Minérale' as it is a clear and specific category within the procurement taxonomy."
+  },
+  "projecteur led||125w": {
+    "canonical": "",
+    "l1": "Non classé",
+    "l2": "Non classé",
+    "l3": "Non classé",
+    "l4": "Non classé",
+    "l5": "Non classé",
+    "confidence": 0.0
+  },
+  "regle||250w": {
+    "canonical": "Régulateur électrique",
+    "l1": "Équipements électroniques et électriques",
+    "l2": "Matériel électrique",
+    "l3": "Régulateurs",
+    "l4": "",
+    "l5": "",
+    "confidence": 0.85,
+    "match_rationale": "Matched to 'Régulateurs' under 'Matériel électrique' as the panel name refers to a 250W electrical device."
+  },
+  "lampe||150w": {
+    "canonical": "",
+    "l1": "Non classé",
+    "l2": "Non classé",
+    "l3": "Non classé",
+    "l4": "Non classé",
+    "l5": "Non classé",
+    "confidence": 0.0
+  },
+  "scotch||80w": {
+    "canonical": "",
+    "l1": "Non classé",
+    "l2": "Non classé",
+    "l3": "Non classé",
+    "l4": "Non classé",
+    "l5": "Non classé",
+    "confidence": 0.0,
+    "match_rationale": "No clear match found for 'scotch' in the given taxonomy."
+  },
+  "restauration||80w-e40": {
+    "canonical": "Restauration",
+    "l1": "Services",
+    "l2": "Catering",
+    "l3": "",
+    "l4": "",
+    "l5": "",
+    "confidence": 0.85,
+    "match_rationale": "The panel name 'restauration' directly matches the L1 category 'Services' and more specifically the subcategory 'Catering'."
+  },
+  "bloc note||40w-e27": {
+    "canonical": "",
+    "l1": "Non classé",
+    "l2": "Non classé",
+    "l3": "Non classé",
+    "l4": "Non classé",
+    "l5": "Non classé",
+    "confidence": 0.0
+  },
+  "gomme||40w": {
+    "canonical": "",
+    "l1": "Non classé",
+    "l2": "Non classé",
+    "l3": "Non classé",
+    "l4": "Non classé",
+    "l5": "Non classé",
+    "confidence": 0.0,
+    "match_rationale": "No clear match found for the given panel name and its designation."
+  },
+  "table basse||11wb22": {
+    "canonical": "Table basse",
+    "l1": "Meubles et équipements de bureau",
+    "l2": "Meubles",
+    "l3": "Meubles de salon et de réception",
+    "l4": "Tables basses",
+    "l5": "",
+    "confidence": 0.95,
+    "match_rationale": "Matched to 'Tables basses' as it is the most specific category that accurately describes a 'table basse'."
+  },
+  "parapheur||11we27": {
+    "canonical": "",
+    "l1": "Non classé",
+    "l2": "Non classé",
+    "l3": "Non classé",
+    "l4": "Non classé",
+    "l5": "Non classé",
+    "confidence": 0.0
+  },
+  "tablette||40w": {
+    "canonical": "Tablette",
+    "l1": "Matériel Électronique et Informatique",
+    "l2": "Equipements Informatiques",
+    "l3": "Tablette",
+    "l4": "",
+    "l5": "",
+    "confidence": 0.95,
+    "match_rationale": "Matched to 'Tablette' under Equipements Informatiques as it is a precise match for the given product."
+  },
+  "drapeau national||100w": {
+    "canonical": "",
+    "l1": "Non classé",
+    "l2": "Non classé",
+    "l3": "Non classé",
+    "l4": "Non classé",
+    "l5": "Non classé",
+    "confidence": 0.0
+  },
+  "onduleur||lumia": {
+    "canonical": "",
+    "l1": "Non classé",
+    "l2": "Non classé",
+    "l3": "Non classé",
+    "l4": "Non classé",
+    "l5": "Non classé",
+    "confidence": 0.0,
+    "match_rationale": "Panel name 'lumia' does not match any known procurement categories and is too vague."
+  },
+  "travaux||e27/36w": {
+    "canonical": "",
+    "l1": "Non classé",
+    "l2": "Non classé",
+    "l3": "Non classé",
+    "l4": "Non classé",
+    "l5": "Non classé",
+    "confidence": 0.0,
+    "match_rationale": "Panel name 'travaux e27/36w' does not provide enough context to match any specific category in the taxonomy."
+  },
+  "electricite||original": {
+    "canonical": "Électricité",
+    "l1": "Services",
+    "l2": "Services Techniques",
+    "l3": "Electricité",
+    "l4": "",
+    "l5": "",
+    "confidence": 0.95,
+    "match_rationale": "Matched with 'Electricité' as the core concept in the Services category, specifically under Services Techniques."
+  },
+  "filtre a huile||e27/18w": {
+    "canonical": "",
+    "l1": "Non classé",
+    "l2": "Non classé",
+    "l3": "Non classé",
+    "l4": "Non classé",
+    "l5": "Non classé",
+    "confidence": 0.0
+  },
+  "contacteur||36w": {
+    "canonical": "Contacteur",
+    "l1": "Équipements Électriques",
+    "l2": "Matériels Électriques",
+    "l3": "Accessoires Électriques",
+    "l4": "Contacteurs",
+    "l5": "",
+    "confidence": 0.95,
+    "match_rationale": "Matched to 'Contacteurs' as the panel name directly refers to an electrical accessory."
+  },
+  "chp tata||65w": {
+    "canonical": "",
+    "l1": "Non classé",
+    "l2": "Non classé",
+    "l3": "Non classé",
+    "l4": "Non classé",
+    "l5": "Non classé",
+    "confidence": 0.0
+  },
+  "dateur||40w": {
+    "canonical": "Appareil de date et marquage",
+    "l1": "Équipements et fournitures diverses",
+    "l2": "Matériel administratif",
+    "l3": "Appareils d'écriture et de marquage",
+    "l4": "",
+    "l5": "",
+    "confidence": 0.85,
+    "match_rationale": "Matched with 'dateur' as it refers to a device for writing and marking, which falls under administrative equipment."
+  },
+  "impression||.": {
+    "canonical": "",
+    "l1": "Non classé",
+    "l2": "Non classé",
+    "l3": "Non classé",
+    "l4": "Non classé",
+    "l5": "Non classé",
+    "confidence": 0.0
+  },
+  "casquette||marque ingelec": {
     "canonical": "",
     "l1": "Non classé",
     "l2": "Non classé",

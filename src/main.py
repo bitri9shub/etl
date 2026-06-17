@@ -100,7 +100,7 @@ def normalize(text: str) -> str | None:
     text = remove_accents(text)
     text = remove_punctuation(text)
     text = normalize_whitespace(text)
-    text = remove_boilerplate(text)
+    # text = remove_boilerplate(text)
     text = standardize_units(text)
     text = normalize_whitespace(text)
 
